@@ -1,12 +1,14 @@
 import os, time, textwrap, pwinput
 user_history = {}
+user_favorites = {}
+user_payments = {}
 data_user = []
 data_book = [["Introduction to Algorithms", "Academic"], ["Learning JavaScript Design Patterns", "Academic"], ["Python Programming: An Introduction to Computer Science", "Academic"], ["Programming Language Design and Implementation", "Academic"], ["Python untuk Programmer Pemula", "Academic"], ["Solo Leveling", "Comic"], ["Omniscient Reader's Viewpoint", "Comic"], ["The Beginning After The End", "Comic"], ["Mercenary Enrollment", "Comic"], ["The Novel's Extra", "Comic"], ["The Dream Class", "Novel"], ["America: Militaristic or Peaceful", "Novel"], ["The Great Gatsby", "Novel"], ["The Catcher in the Rye", "Novel"], ["The Alchemist", "Novel"], ["The Joy of Cooking", "Cook"], ["The Food Lab", "Cook"], ["Salt, Fat, Acid, Heat", "Cook"], ["The Flavor Bible", "Cook"], ["The Science of Good Cooking", "Cook"]]
 escape = ("exit")
 class books:
     def introductionToAlgorithms(username):
         clear_console()
-        option = input("="*80 + "\n" + f"{'Introduction to Algorithms':^80}" + "\n" + "="*80 + "\n" + f"Description{':':>2} Introduction to Algorithms is a book by Thomas H. Cormen, Charles\n{'':>14}E. Leiserson, Ronald L. Rivest, and Clifford Stein.  The book has\n{'':>14}been widely used  as the textbook for  algorithms courses at many\n{'':>14}universities and is  commonly cited as a reference for algorithms\n{'':>14}in published papers.  It is also one of the most popular books on\n{'':>14}the subject, along with The Art of Computer Programming by Donald\n{'':>14}Knuth." + "\n" + "="*80 + "\n" + f"Genre{':':>6} Academic" + "\n" + f"Rating{':':>5} 9.00" + "\n" + f"Author{':':>5} Thomas H. Cormen" + "\n" + f"Publisher{':':>2} The MIT Press" + "\n" + f"Year{':':>7} 1990" + "\n" + f"Language{':':>3} English" + "\n" + f"Pages{':':>6} 1312" + "\n" + "="*80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("="*80 + "\n" + f"{'Introduction to Algorithms':^80}" + "\n" + "="*80 + "\n" + f"Description{':':>2} Introduction to Algorithms is a book by Thomas H. Cormen, Charles\n{'':>14}E. Leiserson, Ronald L. Rivest, and Clifford Stein.  The book has\n{'':>14}been widely used  as the textbook for  algorithms courses at many\n{'':>14}universities and is  commonly cited as a reference for algorithms\n{'':>14}in published papers.  It is also one of the most popular books on\n{'':>14}the subject, along with The Art of Computer Programming by Donald\n{'':>14}Knuth." + "\n" + "="*80 + "\n" + f"Genre{':':>6} Academic" + "\n" + f"Rating{':':>5} 9.00" + "\n" + f"Author{':':>5} Thomas H. Cormen" + "\n" + f"Publisher{':':>2} The MIT Press" + "\n" + f"Year{':':>7} 1990" + "\n" + f"Language{':':>3} English" + "\n" + f"Pages{':':>6} 1312" + "\n" + "="*80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/introductionToAlgorithms.pdf")
@@ -14,6 +16,14 @@ class books:
         elif option == "2":
             return page.introductionToAlgorithms_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "Introduction to Algorithms")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.introductionToAlgorithms(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -22,7 +32,7 @@ class books:
             return books.introductionToAlgorithms(username)
     def learningJavaScriptDesignPatterns(username):
         clear_console()
-        option = input("="*80 + "\n" + f"{'Learning JavaScript Design Patterns':^80}" + "\n" + "="*80 + "\n" + f"Rating{':':>5} 9.56" + "\n" + f"Author{':':>5} Addy Osmani" + "\n" + f"Publisher{':':>2} O'Reilly Media" + "\n" + f"Year{':':>7} 2012" + "\n" + f"Language{':':>3} English" + "\n" + f"Pages{':':>6} 254" + "\n" + "="*80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("="*80 + "\n" + f"{'Learning JavaScript Design Patterns':^80}" + "\n" + "="*80 + "\n" + f"Rating{':':>5} 9.56" + "\n" + f"Author{':':>5} Addy Osmani" + "\n" + f"Publisher{':':>2} O'Reilly Media" + "\n" + f"Year{':':>7} 2012" + "\n" + f"Language{':':>3} English" + "\n" + f"Pages{':':>6} 254" + "\n" + "="*80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+ "\n"+"4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/learningJavaScriptDesignPatterns.pdf")
@@ -30,6 +40,14 @@ class books:
         elif option == "2":
             return page.learningJavaScriptDesignPatterns_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "Learning JavaScript Design Patterns")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.learningJavaScriptDesignPatterns(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -38,7 +56,7 @@ class books:
             return books.learningJavaScriptDesignPatterns(username)
     def pythonProgrammingAnIntroductionToComputerScience(username):
         clear_console()
-        option = input("=" * 80 + "\n" + f"{'Python Programming: An Introduction to Computer Science':^80}" + "\n" + "=" * 80 + "\n" + f"Rating{':':>5} 9.81" + "\n" + f"Author{':':>5} Mark Lutz" + "\n" + f"Publisher{':':>2} O'Reilly Media" + "\n" + f"Year{':':>7} 2002" + "\n" + f"Language{':':>3} English" + "\n" + f"Pages{':':>6} 400" + "=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80 + "\n" + f"{'Python Programming: An Introduction to Computer Science':^80}" + "\n" + "=" * 80 + "\n" + f"Rating{':':>5} 9.81" + "\n" + f"Author{':':>5} Mark Lutz" + "\n" + f"Publisher{':':>2} O'Reilly Media" + "\n" + f"Year{':':>7} 2002" + "\n" + f"Language{':':>3} English" + "\n" + f"Pages{':':>6} 400" + "=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/pythonProgrammingAnIntroductionToComputerScience.pdf")
@@ -46,6 +64,14 @@ class books:
         elif option == "2":
             return page.learningJavaScriptDesignPatterns_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "Python Programming: An Introduction to Computer Science")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.pythonProgrammingAnIntroductionToComputerScience(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -54,7 +80,7 @@ class books:
             return books.pythonProgrammingAnIntroductionToComputerScience(username)
     def programmingLanguageDesignAndImplementation(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'Programming Language Design and Implementation':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 8.96"+"\n"+f"Author{':':>5} Andrew S. Tanen"+"\n"+f"Publisher{':':>2} O'Reilly Media"+"\n"+f"Year{':':>7} 1999"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80)
+        option = input("=" * 80+"\n"+f"{'Programming Language Design and Implementation':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 8.96"+"\n"+f"Author{':':>5} Andrew S. Tanen"+"\n"+f"Publisher{':':>2} O'Reilly Media"+"\n"+f"Year{':':>7} 1999"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/programmingLanguageDesignAndImplementation.pdf")
@@ -62,6 +88,14 @@ class books:
         elif option == "2":
             return page.programmingLanguageDesignAndImplementation_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "Programming Language Design and Implementation")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.programmingLanguageDesignAndImplementation(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -70,7 +104,7 @@ class books:
             return books.programmingLanguageDesignAndImplementation(username)
     def pythonUntukProgrammerPemula(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'Python unruk Programmer Pemula':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.07"+"\n"+f"Author{':':>5} Eko Kurniawan"+"\n"+f"Publisher{':':>2} Gramedia"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'Python untuk Programmer Pemula':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.07"+"\n"+f"Author{':':>5} Eko Kurniawan"+"\n"+f"Publisher{':':>2} Gramedia"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/pythonUntukProgrammerPemula.pdf")
@@ -78,6 +112,14 @@ class books:
         elif option == "2":
             return page.pythonUntukProgrammerPemula_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "Python untuk Programmer Pemula")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.pythonUntukProgrammerPemula(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -86,7 +128,7 @@ class books:
             return books.pythonUntukProgrammerPemula(username)
     def soloLeveling(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'Solo Leveling':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.49"+"\n"+f"Author{':':>5} Chugong"+"\n"+f"Publisher{':':>2} Webtoon"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'Solo Leveling':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.49"+"\n"+f"Author{':':>5} Chugong"+"\n"+f"Publisher{':':>2} Webtoon"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser https://asuracomic.net/series/solo-leveling-9a5c738a/chapter/0")
@@ -94,6 +136,14 @@ class books:
         elif option == "2":
             return page.soloLeveling_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "Solo Leveling")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.soloLeveling(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -102,7 +152,7 @@ class books:
             return books.soloLeveling(username)
     def omniscientReadersViewpoint(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'Omniscient Readers Viewpoint':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.14"+"\n"+f"Author{':':>5} Sing Shong"+"\n"+f"Publisher{':':>2} Reaper Scans"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'Omniscient Readers Viewpoint':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.14"+"\n"+f"Author{':':>5} Sing Shong"+"\n"+f"Publisher{':':>2} Reaper Scans"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser https://asuracomic.net/series/omniscient-readers-viewpoint-b2ee4cd5/chapter/0")
@@ -110,6 +160,14 @@ class books:
         elif option == "2":
             return page.omniscientReadersViewpoint_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "Omniscient Readers Viewpoint")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.omniscientReadersViewpoint(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -118,7 +176,7 @@ class books:
             return books.omniscientReadersViewpoint(username)
     def theBeginningAfterTheEnd(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'The Beginning After The End':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.78"+"\n"+f"Author{':':>5} TurtleMe"+"\n"+f"Publisher{':':>2} Asura Scans"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'The Beginning After The End':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.78"+"\n"+f"Author{':':>5} TurtleMe"+"\n"+f"Publisher{':':>2} Asura Scans"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser https://www.reaperscanss.com/manga/the-beginning-after-the-end/ch-001/")
@@ -126,6 +184,14 @@ class books:
         elif option == "2":
             return page.theBeginningAfterTheEnd_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "The Beginning After The End")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.theBeginningAfterTheEnd(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -134,7 +200,7 @@ class books:
             return books.theBeginningAfterTheEnd(username)
     def mercenaryEnrollment(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'Mercenary Enrollment':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.23"+"\n"+f"Author{':':>5} Eyo"+"\n"+f"Publisher{':':>2} North Star"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'Mercenary Enrollment':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.23"+"\n"+f"Author{':':>5} Eyo"+"\n"+f"Publisher{':':>2} North Star"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser https://www.webtoons.com/id/action/high-school-soldier/prolog/viewer?title_no=2367&episode_no=1")
@@ -142,6 +208,14 @@ class books:
         elif option == "2":
             return page.mercenaryEnrollment_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "Mercenary Enrollment")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.mercenaryEnrollment(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -150,7 +224,7 @@ class books:
             return books.mercenaryEnrollment(username)
     def theNovelsExtra(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'The Novels Extra':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 8.67"+"\n"+f"Author{':':>5} J. D. Salinger"+"\n"+f"Publisher{':':>2} Little, Brown and Company"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'The Novels Extra':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 8.67"+"\n"+f"Author{':':>5} J. D. Salinger"+"\n"+f"Publisher{':':>2} Little, Brown and Company"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser https://komiku.id/the-novels-extra-remake-chapter-01/")
@@ -158,6 +232,14 @@ class books:
         elif option == "2":
             return page.theNovelsExtra_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "The Novels Extra")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.theNovelsExtra(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -166,7 +248,7 @@ class books:
             return books.theNovelsExtra(username)
     def theDreamClass(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'The Dream Class':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.10"+"\n"+f"Author{':':>5} Michael Lewis"+"\n"+f"Publisher{':':>2} Gramedia"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'The Dream Class':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.10"+"\n"+f"Author{':':>5} Michael Lewis"+"\n"+f"Publisher{':':>2} Gramedia"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser https://www.webtoons.com/id/thriller/from-dreams-to-freedom/episode-1/viewer?title_no=4133&episode_no=1")
@@ -174,6 +256,14 @@ class books:
         elif option == "2":
             return page.theDreamClass_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "The Dream Class")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.theDreamClass(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -182,7 +272,7 @@ class books:
             return books.theDreamClass(username)
     def americaMilitaristicOrPeaceful(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'America: Militaristic Or Peaceful':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.91"+"\n"+f"Author{':':>5} Tom Clancy"+"\n"+f"Publisher{':':>2} Penguin"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'America: Militaristic Or Peaceful':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.91"+"\n"+f"Author{':':>5} Tom Clancy"+"\n"+f"Publisher{':':>2} Penguin"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 400"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/americaMilitaristicOrPeaceful.pdf")
@@ -190,6 +280,14 @@ class books:
         elif option == "2":
             return page.americaMilitaristicOrPeaceful_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "America: Militaristic Or Peaceful")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.americaMilitaristicOrPeaceful(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -198,7 +296,7 @@ class books:
             return books.americaMilitaristicOrPeaceful(username)
     def theGreatGatsby(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'The Great Gatsby':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.37"+"\n"+f"Author{':':>5} F. Scott Fitzgerald"+"\n"+f"Publisher{':':>2} HarperCollins"+"\n"+f"Year{':':>7} 1925"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 256"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'The Great Gatsby':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 9.37"+"\n"+f"Author{':':>5} F. Scott Fitzgerald"+"\n"+f"Publisher{':':>2} HarperCollins"+"\n"+f"Year{':':>7} 1925"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 256"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+ "\n"+"4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/theGreatGatsby.pdf")
@@ -206,6 +304,14 @@ class books:
         elif option == "2":
             return page.theGreatGatsby_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "The Great Gatsby")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.theGreatGatsby(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -214,7 +320,7 @@ class books:
             return books.theGreatGatsby(username)
     def theCatcherInTheRye(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'The Catcher in the Rye':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 7.80"+"\n"+f"Author{':':>5} J. D. Salinger"+"\n"+f"Publisher{':':>2} Scribner"+"\n"+f"Year{':':>7} 1951"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 224"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'The Catcher in the Rye':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 7.80"+"\n"+f"Author{':':>5} J. D. Salinger"+"\n"+f"Publisher{':':>2} Scribner"+"\n"+f"Year{':':>7} 1951"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 224"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/theCatcherInTheRye.pdf")
@@ -222,6 +328,14 @@ class books:
         elif option == "2":
             return page.theCatcherInTheRye_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "The Catcher in the Rye")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.theCatcherInTheRye(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -230,7 +344,7 @@ class books:
             return books.theCatcherInTheRye(username)
     def theAlchemist(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'The Alchemist':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 6.70"+"\n"+f"Author{':':>5} Paulo Coelho"+"\n"+f"Publisher{':':>2} HarperCollins"+"\n"+f"Year{':':>7} 1988"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 208"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'The Alchemist':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 6.70"+"\n"+f"Author{':':>5} Paulo Coelho"+"\n"+f"Publisher{':':>2} HarperCollins"+"\n"+f"Year{':':>7} 1988"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 208"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/theAlchemist.pdf")
@@ -238,6 +352,14 @@ class books:
         elif option == "2":
             return page.theAlchemist_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "The Alchemist")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.theAlchemist(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -246,7 +368,7 @@ class books:
             return books.theAlchemist(username)
     def theJoyOfCooking(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'The Joy of Cooking':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 8.04"+"\n"+f"Author{':':>5} John Grisham"+"\n"+f"Publisher{':':>2} Penguin"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 304"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'The Joy of Cooking':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 8.04"+"\n"+f"Author{':':>5} John Grisham"+"\n"+f"Publisher{':':>2} Penguin"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 304"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+ "\n"+"4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/theJoyOfCooking.pdf")
@@ -254,6 +376,14 @@ class books:
         elif option == "2":
             return page.theJoyOfCooking_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "The Joy of Cooking")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.theJoyOfCooking(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -262,7 +392,7 @@ class books:
             return books.theJoyOfCooking(username)
     def theFoodLab(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'The Food Lab':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 7.94"+"\n"+f"Author{':':>5} J. Kenji López-Alt"+"\n"+f"Publisher{':':>2} W. W. Norton & Company"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 304"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'The Food Lab':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 7.94"+"\n"+f"Author{':':>5} J. Kenji López-Alt"+"\n"+f"Publisher{':':>2} W. W. Norton & Company"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 304"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/theFoodLab.pdf")
@@ -270,6 +400,14 @@ class books:
         elif option == "2":
             return page.theFoodLab_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "The Food Lab")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.theFoodLab(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -278,7 +416,7 @@ class books:
             return books.theFoodLab(username)
     def saltFatAcidHeat(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'Salt, Fat, Acid, Heat':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 7.76"+"\n"+f"Author{':':>5} Samin Nosrat"+"\n"+f"Publisher{':':>2} Simon & Schuster"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 304"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'Salt, Fat, Acid, Heat':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 7.76"+"\n"+f"Author{':':>5} Samin Nosrat"+"\n"+f"Publisher{':':>2} Simon & Schuster"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 304"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser https://www.yumpu.com/en/document/read/68964685/pdf-salt-fat-acid-heat-mastering-the-elements-of-good-cooking-pdf")
@@ -286,6 +424,14 @@ class books:
         elif option == "2":
             return page.saltFatAcidHeat_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "Salt, Fat, Acid, Heat")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.saltFatAcidHeat(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -294,7 +440,7 @@ class books:
             return books.saltFatAcidHeat(username)
     def theFlavorBible(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'The Flavor Bible':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 8.42"+"\n"+f"Author{':':>5} Karen Page, Andrew Dornenburg"+"\n"+f"Publisher{':':>2} Little, Brown and Company"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 304"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'The Flavor Bible':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 8.42"+"\n"+f"Author{':':>5} Karen Page, Andrew Dornenburg"+"\n"+f"Publisher{':':>2} Little, Brown and Company"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 304"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/theFlavorBible.pdf")
@@ -302,6 +448,14 @@ class books:
         elif option == "2":
             return page.theFlavorBible_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "The Flavor Bible")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.theFlavorBible(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -310,7 +464,7 @@ class books:
             return books.theFlavorBible(username)
     def theScienceOfGoodCooking(username):
         clear_console()
-        option = input("=" * 80+"\n"+f"{'The Science of Good Cooking':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 7.15"+"\n"+f"Author{':':>5} Cook's Illustrated"+"\n"+f"Publisher{':':>2} America's Test Kitchen"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 304"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" + "3. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3): ")
+        option = input("=" * 80+"\n"+f"{'The Science of Good Cooking':^80}"+"\n"+"=" * 80+"\n"+f"Rating{':':>5} 7.15"+"\n"+f"Author{':':>5} Cook's Illustrated"+"\n"+f"Publisher{':':>2} America's Test Kitchen"+"\n"+f"Year{':':>7} 2019"+"\n"+f"Language{':':>3} English"+"\n"+f"Pages{':':>6} 304"+"\n"+"=" * 80 + "\n" + "1. Download" + "\n" + "2. Read" + "\n" +"3. Favorite"+"\n"+ "4. Back" + "\n" + "="*80 + "\n" + "Choose your option (1/2/3/4): ")
         if option == "1":
             clear_console()
             os.system("python -m webbrowser file:///C:/Users/DELL/OneDrive/Documents/VSCode/ALP%20Alpro%20(Python)/assets/download/theScienceOfGoodCooking.pdf")
@@ -318,6 +472,14 @@ class books:
         elif option == "2":
             return page.theScienceOfGoodCooking_page_1(username)
         elif option == "3":
+            if username not in user_favorites:
+                user_favorites[username] = []
+            update_favorite(username, "The Science of Good Cooking")
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Successfully added to favorites.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return books.theScienceOfGoodCooking(username)
+        elif option == "4":
             return category(username)
         else:
             clear_console()
@@ -1157,7 +1319,7 @@ def homepage(username):
         return homepage(username)
 def menupage(username):
     clear_console()
-    option = input("=" * 80+"\n"+f"{'MENU':^80}"+"\n"+"=" * 80+"\n"+"1. Search"+"\n"+"2. Category"+"\n"+"3. History"+"\n"+"4. Settings"+"\n"+"5. Logout"+"\n"+"=" * 80+"\n"+"Choose your option (1/2/3/4/5): ")
+    option = input("=" * 80+"\n"+f"{'MENU':^80}"+"\n"+"=" * 80+"\n"+"1. Search"+"\n"+"2. Category"+"\n"+"3. Favorite"+"\n"+"4. History"+"\n"+"5. My Points"+"\n"+"6. Settings"+"\n"+"7. Logout"+"\n"+"=" * 80+"\n"+"Choose your option (1/2/3/4/5/6/7): ")
     if option == "1":
         clear_console()
         return search(username)
@@ -1165,9 +1327,30 @@ def menupage(username):
         clear_console()
         return category(username)
     elif option == "3":
+        if not data_user or username == "guest":
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Favorite is unavailable for guest accounts.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return menupage(username)
+        clear_console()
+        return favorite(username)
+    elif option == "4":
+        if not data_user or username == "guest":
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "History is unavailable for guest accounts.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return menupage(username)
         clear_console()
         return history(username)
-    elif option == "4":
+    elif option == "5":
+        if not data_user or username == "guest":
+            clear_console()
+            print("="*80 + "\n\n\n\n" + "Payments is unavailable for guest accounts.\n\n\n\n" + "="*80)
+            time.sleep(2)
+            return menupage(username)
+        clear_console()
+        return payments(username)
+    elif option == "6":
         if not data_user or username == "guest":
             clear_console()
             print("="*80 + "\n\n\n\n" + "Settings is unavailable for guest accounts.\n\n\n\n" + "="*80)
@@ -1175,7 +1358,7 @@ def menupage(username):
             return menupage(username)
         clear_console()
         return settings(username)
-    elif option == "5":
+    elif option == "7":
         clear_console()
         return homepage(username)
     else:
@@ -1459,7 +1642,135 @@ def category(username):
         clear_console()
         print("="*80+"\n\n\n\n"+"Invalid category. Please try again.\n\n\n\n"+"="*80)
         time.sleep(2)
-        return category()
+        return category(username)
+def favorite(username):
+    clear_console()
+    print("=" * 80 + "\n" + f"{'FAVORITE':^80}" + "\n" + "=" * 80)
+    if username not in user_favorites or not user_favorites[username]:
+        print("You have no favorite books yet.")
+    else:
+        print(f"{'No.':<5}{'Book Title':<50}")
+        print("=" * 80)
+        for idx, entry in enumerate(user_favorites[username], 1):
+            print(f"{idx:<5}{entry['book']:<50}")
+    input("\n\nPress enter to return to the menu.")
+    return menupage(username)
+
+def update_favorite(username, book_title):
+    if username == "guest":
+        return
+    if username not in user_favorites:
+        user_favorites[username] = []
+    user_favorites[username].append({"book": book_title})
+    print("=" * 80 + "\n\n\n\n" + f"Added {book_title} to your favorite list.\n\n\n\n" + "=" * 80)
+    time.sleep(2)
+    return favorite(username)
+def payments(username):
+    clear_console()
+    print("="*80 + "\n" + f"{'Payment Processing':^80}" + "\n" + "="*80)
+    print("1. 10.000 Points")
+    print("2. 20.000 Points")
+    print("3. 30.000 Points")
+    print("4. Exit")
+    choose = input("Nominal (1/2/3/4): ")
+    if choose == "1":
+        clear_console()
+        print("="*80 + "\n" + f"{'Payment Processing':^80}" + "\n" + "="*80)
+        print("1. Credit Card")
+        print("2. PayPal")
+        option = input(int("Payment option (1/2): "))
+        if option == "1":
+            clear_console()
+            print("="*80 + "\n" + f"{'Payment Processing':^80}" + "\n" + "="*80)
+            cn = input("Card Number: ")
+            cvv = input("CVV: ")
+            exp_date = input("Expiration Date (MM/YY): ")
+            print("Processing payment...\n")
+            time.sleep(2)
+            print("Payment successful!\n")
+            print("="*80)
+            time.sleep(2)
+            return menupage(username)
+        elif option == "2":
+            clear_console()
+            print("="*80 + "\n" + f"{'Payment Processing':^80}" + "\n" + "="*80)
+            print("PayPal Account:")
+            email = input("Email: ")
+            password = input("Password: ")
+            print("Processing payment...\n")
+            time.sleep(2)
+            print("Payment successful!\n")
+            print("="*80)
+            time.sleep(2)
+            return menupage(username)
+    if choose == "2":
+        clear_console()
+        print("="*80 + "\n" + f"{'Payment Processing':^80}" + "\n" + "="*80)
+        print("1. Credit Card")
+        print("2. PayPal")
+        option = input(int("Payment option (1/2): "))
+        if option == "1":
+            clear_console()
+            print("="*80 + "\n" + f"{'Payment Processing':^80}" + "\n" + "="*80)
+            cn = input("Card Number: ")
+            cvv = input("CVV: ")
+            exp_date = input("Expiration Date (MM/YY): ")
+            print("Processing payment...\n")
+            time.sleep(2)
+            print("Payment successful!\n")
+            print("="*80)
+            time.sleep(2)
+            return menupage(username)
+        elif option == "2":
+            clear_console()
+            print("="*80 + "\n" + f"{'Payment Processing':^80}" + "\n" + "="*80)
+            print("PayPal Account:")
+            email = input("Email: ")
+            password = input("Password: ")
+            print("Processing payment...\n")
+            time.sleep(2)
+            print("Payment successful!\n")
+            print("="*80)
+            time.sleep(2)
+            return menupage(username)
+    if choose == "3":
+        clear_console()
+        print("="*80 + "\n" + f"{'Payment Processing':^80}" + "\n" + "="*80)
+        print("1. Credit Card")
+        print("2. PayPal")
+        option = input(int("Payment option (1/2): "))
+        if option == "1":
+            clear_console()
+            print("="*80 + "\n" + f"{'Payment Processing':^80}" + "\n" + "="*80)
+            cn = input("Card Number: ")
+            cvv = input("CVV: ")
+            exp_date = input("Expiration Date (MM/YY): ")
+            print("Processing payment...\n")
+            time.sleep(2)
+            print("Payment successful!\n")
+            print("="*80)
+            time.sleep(2)
+            return menupage(username)
+        elif option == "2":
+            clear_console()
+            print("="*80 + "\n" + f"{'Payment Processing':^80}" + "\n" + "="*80)
+            print("PayPal Account:")
+            email = input("Email: ")
+            password = input("Password: ")
+            print("Processing payment...\n")
+            time.sleep(2)
+            print("Payment successful!\n")
+            print("="*80)
+            time.sleep(2)
+            return menupage(username)
+    if choose == "4":
+        clear_console()
+        return menupage(username)
+    else:
+        clear_console()
+        print("="*80+"\n\n\n\nInvalid option\n\n\n\n"+"="*80)
+        time.sleep(2)
+        return payments(username)
 def history(username):
     clear_console()
     print("=" * 80+"\n"+f"{'HISTORY':^80}"+"\n"+"=" * 80)
